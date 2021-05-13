@@ -23,7 +23,7 @@ describe('GET Request', () => {
             expect(body[1]).has.property('author', 'js')
 
             body.forEach( function(item) {
-                expect(item).to.have.all.keys('id', 'title' ,'author')
+                expect(item).to.have.all.keys('id', 'body' ,'author')
                 cy.log('Author: ' + item['author'] + ' Title: ' + item['title'])
             });
 

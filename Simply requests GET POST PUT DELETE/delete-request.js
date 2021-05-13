@@ -2,8 +2,6 @@
 
 describe('DELETE Request', () => {
 
-    let titleOfPosts = new Array();
-
     it('Delete a post  /post API', () => {
         cy.request({
             method: "DELETE",
