@@ -19,8 +19,7 @@ describe('Test with backend', () => {
 
     it('Verify correct requeest and response', () => {
 
-        cy.server()
-        cy.route('POST', '**/articles').as('postArticles')
+        cy.intercept('POST', '**/articles').as('postArticles')
 
         cy.contains('New Article').click()
         cy.get('[formcontrolname="title"]').type('Some news')
@@ -29,8 +28,7 @@ describe('Test with backend', () => {
         cy.get('[placeholder="Enter tags"]').type('Some news')
         cy.contains('Publish Article').click()
 
-        cy.wait('@postArticles')
-        cy.get('@postArticles').then (xhr => {
+        cy.wait('@postArticles').then (xhr => {
             console.log(xhr)
             expect(xhr.status).to.equal(200)
             expect(xhr.request.body.article.body).to.equal('Some news')
